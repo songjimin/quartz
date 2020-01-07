@@ -15,7 +15,7 @@ public class TimePrintJob implements Job {
 	private TimePrintService timePrintService;
 
 	@Override
-	public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+	public void execute(JobExecutionContext context) throws JobExecutionException {
 		timePrintService.printTime();
 	}
 }
