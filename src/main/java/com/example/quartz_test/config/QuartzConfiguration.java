@@ -2,6 +2,8 @@ package com.example.quartz_test.config;
 
 import java.util.Properties;
 
+import javax.sql.DataSource;
+
 import com.example.quartz_test.job.RandomNumberPrintJob;
 import com.example.quartz_test.listener.JobsListener;
 import com.example.quartz_test.listener.TriggersListener;
@@ -34,6 +36,9 @@ public class QuartzConfiguration {
 	@Autowired
 	private QuartzProperties quartzProperties;
 
+	@Autowired
+	private DataSource dataSource;
+
 	@Bean
 	public SchedulerFactoryBean schedulerFactoryBean(ApplicationContext applicationContext) throws SchedulerException {
 
@@ -48,9 +53,10 @@ public class QuartzConfiguration {
 		Properties properties = new Properties();
 		properties.putAll(quartzProperties.getProperties());
 
+		schedulerFactoryBean.setDataSource(dataSource);
 		schedulerFactoryBean.setGlobalTriggerListeners(triggersListener);
 		schedulerFactoryBean.setGlobalJobListeners(jobsListener);
-		schedulerFactoryBean.setOverwriteExistingJobs(true);
+		schedulerFactoryBean.setOverwriteExistingJobs(true); 		//DB업데이트 시, 업데이트된 내용 반영
 		schedulerFactoryBean.setQuartzProperties(properties);
 		schedulerFactoryBean.setWaitForJobsToCompleteOnShutdown(true);
 		return schedulerFactoryBean;
