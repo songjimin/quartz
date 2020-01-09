@@ -9,3 +9,9 @@ https://okky.kr/article/265708
 DB
 https://howtodoinjava.com/spring-batch/quartz-h2-jdbcjobstore-example/
 https://advenoh.tistory.com/56
+
+암호화
+https://elfinlas.github.io/2017/12/21/jsaypt/
+http://blog.devenjoy.com/?p=571
+
+

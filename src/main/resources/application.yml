@@ -13,8 +13,8 @@ spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://op-infradb-04.korea.ncsoft.corp:62224;DatabaseName=JMQuartzTest;SelectMethod=cursor
-    username: smiledev
-    password: roqkf12#
+    username: ENC(3js+1Wk9lhmOv2pe8AstdI26268BLT3g)
+    password: ENC(B70agaV/1dFu9gqlHdNAHSeD/3/5htZ4)
   jpa:
     open-in-view: false
     show-sql: true
@@ -33,3 +33,6 @@ spring:
           scheduler:
             instanceName: quartz-jm-app
             instanceId: AUTO
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
