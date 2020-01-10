@@ -2,23 +2,20 @@ spring:
   output:
     ansi:
       enabled: always
-#  quartz:
-#    scheduler-name: QuartzScheduler
-#    job-store-type: memory
-#    properties:
-#      org:
-#        quartz:
-#          threadPool:
-#            threadCount: 5
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://op-infradb-04.korea.ncsoft.corp:62224;DatabaseName=JMQuartzTest;SelectMethod=cursor
     username: ENC(3js+1Wk9lhmOv2pe8AstdI26268BLT3g)
     password: ENC(B70agaV/1dFu9gqlHdNAHSeD/3/5htZ4)
   jpa:
-    open-in-view: false
-    show-sql: true
-    hibernate.ddl-auto: none
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServerDialec
+      use-new-id-generator-mappings: false
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      show-sql: true
+      open-in-view: false
+      ddl-auto: update
   quartz:
     job-store-type: jdbc
     jdbc:
@@ -33,6 +30,17 @@ spring:
           scheduler:
             instanceName: quartz-jm-app
             instanceId: AUTO
+          plugin:
+            shutdownhook:
+              class: org.quartz.plugins.management.ShutdownHookPlugin
+              cleanShutdown: TRUE
+#          threadPool:
+#            threadCount: 1
+#            triggerHistory:
+#              class: org.quartz.plugins.history.LoggingTriggerHistoryPlugin
+#            jobHistory:
+#              class: org.quartz.plugins.history.LoggingJobHistoryPlugin
+
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor

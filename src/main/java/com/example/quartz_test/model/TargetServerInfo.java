@@ -17,8 +17,14 @@ public class TargetServerInfo {
 
 	private long connectionTargetId;
 
-	private int gameCode;
+	private String gameCode;
 
-	private int interval;
+	private String interval;
+
+	private String targetServerAddress;
+
+	private int targetServerPort;
+
+	private Object jobClass;
 
 }
